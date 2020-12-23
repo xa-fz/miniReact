@@ -21,13 +21,18 @@ react-dom/index.js实现了原生标签和文本的挂载
 首先加载jsx虚拟dom时会执行react.js中的createElement方法，作用就是解析jsx
 
 1. src/index.js中使用render方法，传入虚拟dom：jsx和要挂载的根节点：root
+
 ReactDOM.render(jsx, document.getElementById('root'));
 
 进入react-dom/index.js文件
+
 2. 将虚拟节点jsx使用createDOMNode()方法进行处理，解构了虚拟节点vnode，因为通过react
+
     2.1 返回的虚拟dom中，有两个值，一个是type是标签或者文本类型，props是子元素children[]、一些传递的属性例如：id，className
     和虚拟节点的值nodeValue等；
+    
     2.2 这里我的得到的虚拟节点：最外层是div类型，props只有children，没有传递的属性；
+    
     2.3 我们展开第一层children发现，第二层是h1类型，并在props中有属性className：“border”，children中则是最里层的文本也就是
     react中声明的h1标签中的子元素：mini React，这时children为空数组，type类型是TEXT；
 3. 判断节点类型是文本还是原生的标签类型，然后分别处理：
