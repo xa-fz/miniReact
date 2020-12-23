@@ -5,10 +5,9 @@
  * @param  {...obj} children 标签中间的子元素
  */
 function createElement(type, config, ...children) {
-    console.log(arguments, type, config, children);
     const  props = {
         ...config,
-        children:children.map((child)=>typeof child ==='object'?child:createElementText(child))
+        children:children.map(child => typeof child ==='object' ? child : createElementText(child))
     }
     return { type, props }
 }

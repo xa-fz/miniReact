@@ -21,8 +21,12 @@ module.exports = {
                 loader:'babel-loader',
                 options:{
                     presets: [
-                        "@babel/react"
-                    ]
+                        [ "@babel/preset-react",
+                            {
+                                "pragma": "React.createElementText", // default pragma is React.createElement
+                            }
+                        ]
+                    ],
                 }
             },
             {
